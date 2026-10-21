@@ -10,6 +10,22 @@ permissions:
 
 jobs:
 
+  windows-daemon:
+    name: Windows daemon regressions
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v7
+    - uses: actions/setup-go@v7
+      with:
+        go-version: '1.27.x'
+        cache-dependency-path: cmd/sshpiperd/go.sum
+    - name: Test daemon including unreadable host key
+      working-directory: cmd/sshpiperd
+      run: go test -count=1 -timeout 5m ./...
+    - name: Test pinned SSH library
+      working-directory: cmd/sshpiperd
+      run: go test -count=1 -timeout 5m golang.org/x/crypto/ssh/...
+
   test-and-lint:
     name: Build
     runs-on: ubuntu-latest

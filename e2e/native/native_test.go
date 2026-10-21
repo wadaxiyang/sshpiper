@@ -133,6 +133,7 @@ func testNativeE2E(t *testing.T, lifecycle func(*testing.T, *nativeSuite)) {
 	}
 
 	suite := &nativeSuite{daemon: daemon, keyPath: keyPath, signer: signer, upstream: composeUpstream(t), plugins: plugins}
+	t.Run("authentication-timeout-cleanup", func(t *testing.T) { testAuthenticationTimeoutCleanup(t, suite) })
 	for _, name := range order {
 		t.Run(name, func(t *testing.T) { scenarios[name](t, suite) })
 	}

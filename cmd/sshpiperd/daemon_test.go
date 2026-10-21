@@ -414,9 +414,10 @@ func TestLoadHostKeys(t *testing.T) {
 	t.Run("errors when server-key file is unreadable", func(t *testing.T) {
 		// file must exist (so glob matches it) but be unreadable
 		unreadablePath := filepath.Join(dir, "unreadable_key")
-		if err := os.WriteFile(unreadablePath, []byte("data"), 0o000); err != nil {
+		if err := os.WriteFile(unreadablePath, []byte("data"), 0o600); err != nil {
 			t.Fatalf("failed to write unreadable key file: %v", err)
 		}
+		makeTestFileUnreadable(t, unreadablePath)
 
 		ctx := newTestCLIContext(t, map[string]string{
 			"server-key-data":          "",

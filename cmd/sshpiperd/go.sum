@@ -20,10 +20,10 @@ github.com/russross/blackfriday/v2 v2.1.0 h1:JIOH55/0cWyOuilr9/qlrm0BSXldqnqwMsf
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/tg123/remotesigner v0.0.3 h1:OA+yzMtlUFwkFpawyu0adG0Jq2NJzw8X7mP/+Z4OxuQ=
 github.com/tg123/remotesigner v0.0.3/go.mod h1:vborNv1HjfGLNCFJhUSmcAqqwks4AE1pE8ind6YDuII=
-github.com/tg123/sshpiper.crypto v0.57.0-sshpiper-20260929 h1:uIavevzg55D/oun/F7+ZsDZtiJTE0RAjh8DH7awZJBg=
-github.com/tg123/sshpiper.crypto v0.57.0-sshpiper-20260929/go.mod h1:Fdz0i5U6CoizGwLda9DttjSk6qlZo25zYNtR+ycvuZA=
 github.com/urfave/cli/v2 v2.27.7 h1:bH59vdhbjLv3LAvIu6gd0usJHgoTTPhCFib8qqOwXYU=
 github.com/urfave/cli/v2 v2.27.7/go.mod h1:CyNAG/xg+iAOg0N4MPGZqVmv2rCoP267496AOXUZjA4=
+github.com/wadaxiyang/sshpiper.crypto v0.0.0-20261021065834-e58e5f25157c h1:+0RtImOVUBfqRwmWgI0EFlrzWzkQMpp0tmcbazhEu5w=
+github.com/wadaxiyang/sshpiper.crypto v0.0.0-20261021065834-e58e5f25157c/go.mod h1:Fdz0i5U6CoizGwLda9DttjSk6qlZo25zYNtR+ycvuZA=
 github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 h1:gEOO8jv9F4OT7lGCjxCBTO/36wtF6j2nSip77qHd4x4=
 github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1/go.mod h1:Ohn+xnUBiLI6FVj/9LpzZWtj1/D6lUovWYBkxHVV3aM=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=
