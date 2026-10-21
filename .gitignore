@@ -22,6 +22,7 @@ go.work
 go.work.sum
 
 /dist/
+/sshpiper/
 cmd/sshpiperd/snap/launcher/configentry.txt
 /sshpiperd-admin
 /sshpiperd
