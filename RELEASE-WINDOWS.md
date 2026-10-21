@@ -11,6 +11,9 @@ The exact source commit and toolchain are included in `BUILD.json`.
   sshpiper.crypto PR #5). The crypto dependency is pinned to this user's fork.
 - Tests unreadable host-key handling on Windows with a real exclusive file
   handle instead of assuming Unix permission bits apply to Windows.
+- Makes plugin fixtures platform-aware and file-URI conversion independent of
+  the test host. Existing plugin permission checks remain fail-closed; the
+  Windows routing/parsing fixtures explicitly use their existing test opt-out.
 - Includes the daemon, admin CLI, embedded web dashboard, and all eight Windows
   plugins. Build: Go 1.27.1, Windows amd64, CGO disabled.
 

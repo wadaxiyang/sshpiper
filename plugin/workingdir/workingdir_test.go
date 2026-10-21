@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 )
@@ -85,7 +86,13 @@ func TestWorkingdirPermissionChecks(t *testing.T) {
 		t.Fatalf("failed to write secure file: %v", err)
 	}
 
-	if _, err := w.Readfile(secureFile); err != nil {
+	if _, err := w.Readfile(secureFile); runtime.GOOS == "windows" {
+		// Windows mode bits do not represent ACLs. The default POSIX check
+		// must still fail closed, even for a read-only fixture.
+		if err == nil {
+			t.Fatal("expected the POSIX permission check to reject Windows mode bits")
+		}
+	} else if err != nil {
 		t.Fatalf("Readfile on secure file returned error: %v", err)
 	}
 
@@ -128,9 +135,11 @@ func TestWorkingdirFactoryListPipe(t *testing.T) {
 	fac := workingdirFactory{
 		root:             root,
 		allowBadUsername: true,
-		noCheckPerm:      false,
-		strictHostKey:    true,
-		recursiveSearch:  false,
+		// This test exercises routing; Windows fixtures use the explicit
+		// opt-out already covered by TestWorkingdirPermissionChecks.
+		noCheckPerm:     runtime.GOOS == "windows",
+		strictHostKey:   true,
+		recursiveSearch: false,
 	}
 
 	pipes, err := fac.listPipe(fakeConn{user: user})

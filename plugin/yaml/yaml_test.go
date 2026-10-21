@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"os"
 	"path/filepath"
+	"runtime"
 	"slices"
 	"testing"
 
@@ -256,6 +257,9 @@ pipes:
 
 	p := &plugin{
 		FileGlobs: *cli.NewStringSlice(path),
+		// This is a parsing test. TestCheckPerm separately checks that the
+		// default rejects permissive mode bits and the opt-out is explicit.
+		NoCheckPerm: runtime.GOOS == "windows",
 	}
 	configs, err := p.loadConfig()
 	if err != nil {

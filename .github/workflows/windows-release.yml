@@ -28,6 +28,8 @@ jobs:
       GOWORK: 'off'
       CGO_ENABLED: '0'
     steps:
+      - name: Preserve source bytes for embedded assets
+        run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0

@@ -103,7 +103,12 @@ func TestOpenSessionStore(t *testing.T) {
 	}
 
 	dir := t.TempDir()
-	s, err := openSessionStore("file://" + dir)
+	uriPath := filepath.ToSlash(dir)
+	if filepath.VolumeName(dir) != "" {
+		uriPath = "/" + uriPath
+	}
+	fileURI := (&url.URL{Scheme: "file", Path: uriPath}).String()
+	s, err := openSessionStore(fileURI)
 	if err != nil {
 		t.Fatalf("file scheme: %v", err)
 	}

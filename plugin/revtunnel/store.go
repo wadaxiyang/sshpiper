@@ -5,7 +5,6 @@ package main
 import (
 	"fmt"
 	"net/url"
-	"path/filepath"
 	"runtime"
 	"strings"
 )
@@ -62,7 +61,8 @@ func fileURIPath(u *url.URL, goos string) string {
 		// conversion to make this helper testable on non-Windows builders.
 		return strings.ReplaceAll(p, "/", `\`)
 	}
-	return filepath.FromSlash(p)
+	// The requested platform, not the test host, determines separators.
+	return p
 }
 
 func isASCIILetter(b byte) bool {
