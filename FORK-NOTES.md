@@ -69,3 +69,22 @@ tests, lint, formatting, and native E2E continue to run on master pushes.
 
 This source fork does not replace any SSHPiperTray dependency snapshot,
 deployment script, plugin binary, or existing host key by itself.
+
+## Verification on 2026-10-21
+
+- Windows x64 Go 1.27.1: all daemon unit tests passed, including the unreadable
+  host-key case; the repaired library passed `go test ./ssh/...`.
+- Linux Go 1.27.1: root-module full-plugin and daemon unit tests passed with
+  `-race -cover`; golangci-lint v2.15.0 reported zero issues in both modules.
+- gofumpt v0.8.0 reported no unformatted source in the daemon repository.
+- Native Windows E2E passed (32.799 seconds), including all eight shipped
+  plugins, process-tree cleanup, and the new timeout cleanup test.
+- A separate test with the existing SSHPiperTray Lua binary reproduced two
+  leaked authenticated connections on the old daemon and zero on this fork;
+  the same repaired daemon accepted another SSH channel without restart.
+  Tray TOFU/key-change/concurrent-login/outage-recovery regression also passed.
+
+These are local verification results. GitHub Actions records the independent
+hosted checks for each commit; the crypto fork's Windows/Linux checks also run
+in its own repository. Long-duration production behavior is not established by
+these bounded tests.
