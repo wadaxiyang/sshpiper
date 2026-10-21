@@ -62,5 +62,10 @@ The root and daemon test/lint workflows remain enabled. Windows daemon tests
 now also run in CI. Native E2E uses `e2e/windows/run.ps1` or `e2e/macos/run.sh`;
 the new regression is named `authentication-timeout-cleanup`.
 
+Inherited release jobs are restricted to the upstream repository so a source
+push in this fork does not create/delete release drafts or publish images.
+The performance benchmark can be launched manually in this fork; correctness
+tests, lint, formatting, and native E2E continue to run on master pushes.
+
 This source fork does not replace any SSHPiperTray dependency snapshot,
 deployment script, plugin binary, or existing host key by itself.
